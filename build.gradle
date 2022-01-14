@@ -1,5 +1,6 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.4.32'
+    id 'application'
 }
 
 group 'org.example'
@@ -20,6 +21,14 @@ repositories {
             basic(BasicAuthentication)
         }
     }
+}
+
+ext {
+    javaMainClass = "com.tcreative.addons.MainKt"
+}
+
+application {
+    mainClassName = javaMainClass
 }
 
 dependencies {
