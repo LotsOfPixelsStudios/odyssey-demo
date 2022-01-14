@@ -29,6 +29,13 @@ jobs:
         distribution: 'adopt'
     - name: Validate Gradle wrapper
       uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+    - name: Credentials
+      env:
+        GRADLE_PROPERTIES: ${{ secrets.GRADLE_PROPERTIES }}
+      shell: bash
+      run: |
+        mkdir -p ~/.gradle/
+        echo "${GRADLE_PROPERTIES}" > ~/.gradle/env-timoliacreative.local.gradle
     - name: Run project with Gradle
       run: ./gradlew run
     - name: Release
