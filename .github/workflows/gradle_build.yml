@@ -36,10 +36,10 @@ jobs:
       run: |
         mkdir -p ~/.gradle/
         echo "${GRADLE_PROPERTIES}" > ~/.gradle/env-timoliacreative.local.gradle
+    - name: Build project with Gradle
+      run: ./gradlew build
     - name: Run project with Gradle
-      run: |
-        ./gradlew run
-        ls -l
+      run: ./gradlew run
     - name: Release
       uses: ncipollo/release-action@v1
       with:
