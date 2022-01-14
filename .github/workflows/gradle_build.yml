@@ -32,7 +32,6 @@ jobs:
     - name: Run project with Gradle
       run: ./gradlew run
     - name: Release
-      id: create release
       uses: ncipollo/release-action@v1
       with:
         artifacts: "zipVersions/*.mcworld"
