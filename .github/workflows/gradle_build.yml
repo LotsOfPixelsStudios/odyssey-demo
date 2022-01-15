@@ -35,7 +35,7 @@ jobs:
       shell: bash
       run: |
         mkdir -p ~/.gradle/
-        echo "${GRADLE_PROPERTIES}" > ~/.gradle/env-timoliacreative.local.gradle
+        echo "${GRADLE_PROPERTIES}" > ~/.gradle/env-timoliacreative.local.gradle.kts
     - name: Build project with Gradle
       run: ./gradlew build
     - name: Run project with Gradle
