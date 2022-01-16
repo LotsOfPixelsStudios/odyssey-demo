@@ -3,6 +3,7 @@ package com.tcreative.addons.soldier
 import com.tcreative.devtools.tranclate.Props
 import com.tcreative.devtools.tranclate.addon.beh.entites.BehEntityComponentGroups
 import com.tcreative.devtools.tranclate.addon.beh.entites.events.BehEntityEvents
+import com.tcreative.devtools.tranclate.addon.beh.spawnrules.PopulationControl
 import com.tcreative.devtools.tranclate.addon.molang.Query
 import com.tcreative.devtools.tranclate.builder.getEntityTextureResource
 import com.tcreative.devtools.tranclate.builder.spawnRules
@@ -42,7 +43,7 @@ fun spawnEvent(behEntityEvents: BehEntityEvents) {
 
 fun soldierSpawnRules() {
     spawnRules("soldier_melee") {
-        description("${Props.projectShort}:soldier_melee", "monster")
+        description("${Props.projectShort}:soldier_melee", PopulationControl.MONSTER)
         condition {
             spawnOnSurface()
             herd {
@@ -52,7 +53,7 @@ fun soldierSpawnRules() {
         }
     }
     spawnRules("soldier_range") {
-        description("${Props.projectShort}:soldier_range", "monster")
+        description("${Props.projectShort}:soldier_range", PopulationControl.MONSTER)
         condition {
             spawnOnSurface()
             herd {
