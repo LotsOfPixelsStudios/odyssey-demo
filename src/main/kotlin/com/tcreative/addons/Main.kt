@@ -11,7 +11,7 @@ fun main() {
     addon(
         projectName = "Odyssey Demo",
         projectShort = "od",
-        world = getWorldResource("template-world"),
+        world = getWorldResource("odyssey"),
         version = arrayListOf(1,0,0),
         packIcon = getPackIconResource("pack.png")
     ) {
@@ -20,5 +20,5 @@ fun main() {
     }
 
     //create a usable mcaddon or mcworld file
-    zipProject("1.0", getWorldResource("template-world"))
+    zipProject("1.0", getWorldResource("odyssey"))
 }
