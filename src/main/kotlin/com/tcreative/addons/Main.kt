@@ -14,7 +14,7 @@ fun main() {
         projectName = "Odyssey Demo",
         projectShort = "od",
         world = getWorldResource("odyssey"),
-        version = arrayListOf(1,0,0),
+        version = arrayListOf(1,1,0),
         packIcon = getPackIconResource("pack.png")
     ) {
         soldierRange(this)
@@ -23,7 +23,7 @@ fun main() {
     }
 
     //create a usable mcaddon or mcworld file
-    zipProject("1.0", getWorldResource("odyssey"))
+    zipProject("1.1", getWorldResource("odyssey"))
     //package
     packageAddon(getWorldResource("odyssey"), null)
 }
