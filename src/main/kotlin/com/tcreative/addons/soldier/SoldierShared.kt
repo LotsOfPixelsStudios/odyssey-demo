@@ -1,9 +1,11 @@
 package com.tcreative.addons.soldier
 
+import com.tcreative.devtools.tranclate.Props
 import com.tcreative.devtools.tranclate.addon.beh.entites.BehEntityComponentGroups
 import com.tcreative.devtools.tranclate.addon.beh.entites.events.BehEntityEvents
 import com.tcreative.devtools.tranclate.addon.molang.Query
 import com.tcreative.devtools.tranclate.builder.getEntityTextureResource
+import com.tcreative.devtools.tranclate.builder.spawnRules
 import com.tcreative.devtools.tranclate.systemaddon.entityapi.AddonEntity
 
 fun loadTextures(addonEntity: AddonEntity) {
@@ -34,6 +36,29 @@ fun spawnEvent(behEntityEvents: BehEntityEvents) {
                         componentGroup("texture_variant_$i")
                     }
                 }
+        }
+    }
+}
+
+fun soldierSpawnRules() {
+    spawnRules("soldier_melee") {
+        description("${Props.projectShort}:soldier_melee", "monster")
+        condition {
+            spawnOnSurface()
+            herd {
+                maxSize(5)
+                minSize(2)
+            }
+        }
+    }
+    spawnRules("soldier_range") {
+        description("${Props.projectShort}:soldier_range", "monster")
+        condition {
+            spawnOnSurface()
+            herd {
+                maxSize(3)
+                minSize(1)
+            }
         }
     }
 }
