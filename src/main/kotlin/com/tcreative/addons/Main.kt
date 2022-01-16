@@ -6,6 +6,7 @@ import com.tcreative.devtools.tranclate.builder.addon
 import com.tcreative.devtools.tranclate.builder.getPackIconResource
 import com.tcreative.devtools.tranclate.builder.getWorldResource
 import com.tcreative.devtools.tranclate.builder.zipper.zipProject
+import com.tcreative.devtools.tranclate.systemaddon.packageing.packageAddon
 
 fun main() {
     addon(
@@ -21,4 +22,6 @@ fun main() {
 
     //create a usable mcaddon or mcworld file
     zipProject("1.0", getWorldResource("odyssey"))
+    //package
+    packageAddon(getWorldResource("odyssey"), null)
 }
