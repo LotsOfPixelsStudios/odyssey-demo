@@ -1,6 +1,5 @@
 package com.tcreative.addons.soldier
 
-import com.tcreative.devtools.tranclate.addon.beh.entites.data.Subject
 import com.tcreative.devtools.tranclate.builder.getEntityAnimationResource
 import com.tcreative.devtools.tranclate.builder.getEntityGeometryResource
 import com.tcreative.devtools.tranclate.systemaddon.SystemAddon
@@ -14,32 +13,12 @@ fun soldierMelee(systemAddon: SystemAddon) {
 
         componentGroups { loadTextureCompGroups(this) }
         components {
+            sharedComponents(this)
             typeFamily(arrayListOf("mob", "addon"))
-            physics()
-            pushable()
-            navigationWalk {
-                avoidDamageBlocks(true)
-                avoidWater(true)
-                canPathOverWater(false)
-            }
-            movement()
-            behNearestAttackableTarget {
-                priority(1)
-                entityTypes {
-                    type {
-                        filters {
-                            isFamily(subject = Subject.OTHER, value = "monster")
-                        }
-                    }
-                }
-            }
-            behHurtByTarget {
-                priority(0)
-            }
-            behRandomStroll(4)
             delayedAttack {
                 priority(1)
             }
+            attack(5)
         }
         events { spawnEvent(this) }
     }

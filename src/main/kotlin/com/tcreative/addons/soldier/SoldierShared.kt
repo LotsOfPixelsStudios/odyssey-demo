@@ -2,6 +2,8 @@ package com.tcreative.addons.soldier
 
 import com.tcreative.devtools.tranclate.Props
 import com.tcreative.devtools.tranclate.addon.beh.entites.BehEntityComponentGroups
+import com.tcreative.devtools.tranclate.addon.beh.entites.BehEntityComponents
+import com.tcreative.devtools.tranclate.addon.beh.entites.data.Subject
 import com.tcreative.devtools.tranclate.addon.beh.entites.events.BehEntityEvents
 import com.tcreative.devtools.tranclate.addon.beh.spawnrules.PopulationControl
 import com.tcreative.devtools.tranclate.addon.molang.Query
@@ -61,5 +63,43 @@ fun soldierSpawnRules() {
                 minSize(1)
             }
         }
+    }
+}
+
+fun sharedComponents(components: BehEntityComponents) {
+    components.collisionBox(1.8f, 0.6f)
+    components.physics()
+    components.pushable()
+    components.navigationWalk {
+        avoidDamageBlocks(true)
+        avoidWater(true)
+        canPathOverWater(false)
+    }
+    components.equipItem()
+    components.movement(0.2f)
+    components.movementBasic()
+    components.health(20)
+    components.behNearestAttackableTarget {
+        priority(1)
+        entityTypes {
+            type {
+                filters {
+                    isFamily(subject = Subject.OTHER, value = "monster")
+                }
+            }
+        }
+        mustReach(false)
+        mustSee(false)
+    }
+    components.behHurtByTarget {
+        priority(0)
+    }
+    components.behRandomStroll(4)
+    components.behLookAtPlayer {
+        priority(5)
+        lookDistance(20f)
+    }
+    components.behHurtByTarget {
+        priority(0)
     }
 }
