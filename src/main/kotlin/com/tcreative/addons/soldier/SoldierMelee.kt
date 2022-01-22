@@ -2,6 +2,7 @@ package com.tcreative.addons.soldier
 
 import com.tcreative.devtools.tranclate.addon.molang.Query
 import com.tcreative.devtools.tranclate.addon.molang.and
+import com.tcreative.devtools.tranclate.addon.molang.not
 import com.tcreative.devtools.tranclate.builder.getEntityAnimationResource
 import com.tcreative.devtools.tranclate.builder.getEntityGeometryResource
 import com.tcreative.devtools.tranclate.systemaddon.SystemAddon
@@ -28,7 +29,7 @@ fun soldierMelee(systemAddon: SystemAddon) {
                         transitions {
                             transition(
                                 "default",
-                                Query.allAnimationsFinished and "!${Query.isDelayedAttacking}"
+                                "" not Query.isDelayedAttacking and Query.allAnimationsFinished
                             )
                         }
                     }
