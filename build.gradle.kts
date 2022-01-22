@@ -38,7 +38,7 @@ application {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("de.timoliacreative:tranclate:2.0.64-SNAPCHOT") {
+    implementation("de.timoliacreative:tranclate:2.0.73-SNAPCHOT") {
         isChanging = true
     }
 }

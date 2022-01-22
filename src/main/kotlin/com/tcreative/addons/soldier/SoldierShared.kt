@@ -1,6 +1,7 @@
 package com.tcreative.addons.soldier
 
 import com.tcreative.devtools.tranclate.Props
+import com.tcreative.devtools.tranclate.addon.animcontrollers.AnimationControllers
 import com.tcreative.devtools.tranclate.addon.beh.entites.BehEntityComponentGroups
 import com.tcreative.devtools.tranclate.addon.beh.entites.BehEntityComponents
 import com.tcreative.devtools.tranclate.addon.beh.entites.data.Subject
@@ -77,8 +78,13 @@ fun sharedComponents(components: BehEntityComponents) {
     }
     components.equipItem()
     components.movement(0.2f)
+    components.jumpStatic()
     components.movementBasic()
     components.health(20)
+    components.despawn {
+        despawnFromDistance()
+    }
+    components.scale(1.05f)
     components.behNearestAttackableTarget {
         priority(1)
         entityTypes {
@@ -101,5 +107,17 @@ fun sharedComponents(components: BehEntityComponents) {
     }
     components.behHurtByTarget {
         priority(0)
+    }
+    components.behMoveToLand(2, 15f)
+}
+
+fun sharedResAnimControllers(animationControllers: AnimationControllers) {
+    animationControllers.animController("general") {
+        initialState("default")
+        animStates {
+            animState("default") {
+                animation(arrayListOf("base_pose", "default", "move"))
+            }
+        }
     }
 }
