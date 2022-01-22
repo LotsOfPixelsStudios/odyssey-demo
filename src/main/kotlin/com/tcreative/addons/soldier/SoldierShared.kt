@@ -95,7 +95,7 @@ fun sharedComponents(components: BehEntityComponents) {
             }
         }
         mustReach(false)
-        mustSee(false)
+        mustSee(true)
     }
     components.behHurtByTarget {
         priority(0)
