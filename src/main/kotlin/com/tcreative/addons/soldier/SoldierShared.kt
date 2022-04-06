@@ -13,14 +13,16 @@ import com.tcreative.devtools.tranclate.builder.spawnRules
 import com.tcreative.devtools.tranclate.systemaddon.entityapi.AddonEntity
 
 fun loadTextures(addonEntity: AddonEntity) {
-    addonEntity.textures(
-        arrayListOf(
-            getEntityTextureResource("soldier_npc_0.png"),
-            getEntityTextureResource("soldier_npc_1.png"),
-            getEntityTextureResource("soldier_npc_2.png"),
-            getEntityTextureResource("soldier_npc_3.png")
-        ), Query.variant
-    )
+    addonEntity.resource {
+        textures(
+            arrayListOf(
+                getEntityTextureResource("soldier_npc_0.png"),
+                getEntityTextureResource("soldier_npc_1.png"),
+                getEntityTextureResource("soldier_npc_2.png"),
+                getEntityTextureResource("soldier_npc_3.png")
+            ), Query.variant
+        )
+    }
 }
 
 fun loadTextureCompGroups(behEntityComponentGroups: BehEntityComponentGroups) {
@@ -68,25 +70,34 @@ fun soldierSpawnRules() {
 }
 
 fun sharedComponents(components: BehEntityComponents) {
-    components.collisionBox(1.8f, 0.6f)
-    components.physics()
-    components.pushable()
-    components.navigationWalk {
-        avoidDamageBlocks(true)
-        avoidWater(true)
-        canPathOverWater(false)
+    components.collisionBox {
+        height = 1.8f
+        width = 0.6f
     }
-    components.equipItem()
-    components.movement(0.2f)
-    components.jumpStatic()
-    components.movementBasic()
-    components.health(20)
+    components.physics { }
+    components.pushable { }
+    components.navigationWalk {
+        avoidDamageBlocks = true
+        avoidWater = true
+        canPathOverWater = false
+    }
+    components.behEquipItem { }
+    components.movement {
+        value = 0.2f
+    }
+    components.jumpStatic { }
+    components.movementBasic { }
+    components.health {
+        value = 20
+    }
     components.despawn {
         despawnFromDistance()
     }
-    components.scale(1.05f)
+    components.scale {
+        value = 1.05f
+    }
     components.behNearestAttackableTarget {
-        priority(1)
+        priority = 1
         entityTypes {
             type {
                 filters {
@@ -94,29 +105,33 @@ fun sharedComponents(components: BehEntityComponents) {
                 }
             }
         }
-        mustReach(false)
-        mustSee(true)
+        mustReach = false
+        mustSee = true
     }
     components.behHurtByTarget {
-        priority(0)
+        priority = 0
     }
-    components.behRandomStroll(4)
+    components.behRandomStroll {
+        priority = 4
+    }
     components.behLookAtPlayer {
-        priority(5)
-        lookDistance(20f)
+        priority = 5
+        lookDistance = 20f
     }
     components.behHurtByTarget {
-        priority(0)
+        priority = 0
     }
-    components.behMoveToLand(2, 15f)
+    components.behMoveToLand {
+        priority = 2
+    }
 }
 
 fun sharedResAnimControllers(animationControllers: AnimationControllers) {
     animationControllers.animController("general") {
-        initialState("default")
+        initialState = "default"
         animStates {
             animState("default") {
-                animation(arrayListOf("base_pose", "default", "move"))
+                animation = arrayListOf("base_pose", "default", "move")
             }
         }
     }

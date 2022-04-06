@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.6.20"
     id("application")
 }
 
@@ -38,7 +38,7 @@ application {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("de.timoliacreative:tranclate:2.0.73-SNAPCHOT") {
+    implementation("de.timoliacreative:tranclate:2.0.94-SNAPCHOT") {
         isChanging = true
     }
 }
