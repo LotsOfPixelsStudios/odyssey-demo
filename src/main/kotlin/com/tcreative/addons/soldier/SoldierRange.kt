@@ -29,10 +29,14 @@ fun soldierRange(systemAddon: SystemAddon) {
                 sharedComponents(this)
                 typeFamily(arrayListOf("mob", "addon"))
                 behRangedAttack {
-                    priority(1)
+                    priority = 1
                 }
-                shooter("arrow")
-                attack(4)
+                shooter {
+                    type = "arrow"
+                }
+                attack {
+                    damage = 4
+                }
                 equipment {
                     table("soldier_range") {
                         pool(rolls = 1) {
@@ -40,13 +44,15 @@ fun soldierRange(systemAddon: SystemAddon) {
                         }
                     }
                 }
-                loot("soldier") {
-                    pool {
-                        entry(type = "item", name = "arrow", weight = 10) {
-                            functionSetCount(4)
-                        }
-                        entry(type = "item", name = "bone", weight = 10) {
-                            functionSetCount(2)
+                loot {
+                    genTable("soldier") {
+                        pool {
+                            entry(type = "item", name = "arrow", weight = 10) {
+                                functionSetCount(4)
+                            }
+                            entry(type = "item", name = "bone", weight = 10) {
+                                functionSetCount(2)
+                            }
                         }
                     }
                 }

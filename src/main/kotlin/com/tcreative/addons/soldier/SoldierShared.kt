@@ -37,9 +37,9 @@ fun spawnEvent(behEntityEvents: BehEntityEvents) {
         randomize {
             for (i in 0..3)
                 randomComp {
-                    weight(1)
+                    weight = 1
                     add {
-                        componentGroup("texture_variant_$i")
+                        componentGroup = "texture_variant_$i"
                     }
                 }
         }
