@@ -8,7 +8,7 @@ import com.tcreative.devtools.tranclate.addon.beh.entites.data.Subject
 import com.tcreative.devtools.tranclate.addon.beh.entites.events.BehEntityEvents
 import com.tcreative.devtools.tranclate.addon.beh.spawnrules.PopulationControl
 import com.tcreative.devtools.tranclate.addon.molang.Query
-import com.tcreative.devtools.tranclate.builder.getEntityTextureResource
+import com.tcreative.devtools.tranclate.builder.getResource
 import com.tcreative.devtools.tranclate.builder.spawnRules
 import com.tcreative.devtools.tranclate.systemaddon.entityapi.AddonEntity
 
@@ -17,10 +17,10 @@ fun loadTextures(addonEntity: AddonEntity) {
         resource {
             textures(
                 arrayListOf(
-                    getEntityTextureResource("soldier_npc_0.png"),
-                    getEntityTextureResource("soldier_npc_1.png"),
-                    getEntityTextureResource("soldier_npc_2.png"),
-                    getEntityTextureResource("soldier_npc_3.png")
+                    getResource("entity/textures/soldier_npc_0.png"),
+                    getResource("entity/textures/soldier_npc_1.png"),
+                    getResource("entity/textures/soldier_npc_2.png"),
+                    getResource("entity/textures/soldier_npc_3.png")
                 ), Query.variant
             )
         }

@@ -3,27 +3,24 @@ package com.tcreative.addons
 import com.tcreative.addons.soldier.soldierMelee
 import com.tcreative.addons.soldier.soldierRange
 import com.tcreative.addons.soldier.soldierSpawnRules
-import com.tcreative.devtools.tranclate.builder.getPackIconResource
-import com.tcreative.devtools.tranclate.builder.getWorldResource
+import com.tcreative.devtools.tranclate.builder.getResource
 import com.tcreative.devtools.tranclate.builder.zipper.zipProject
 import com.tcreative.devtools.tranclate.systemaddon.addon
-import com.tcreative.devtools.tranclate.systemaddon.packageing.packageAddon
 
 fun main() {
     addon(
         projectName = "Odyssey Demo",
         projectShort = "od",
-        world = getWorldResource("odyssey"),
+        world = getResource("world/odyssey"),
         version = arrayListOf(1,1,0),
-        packIcon = getPackIconResource("pack.png")
+        packIcon = getResource("general/pack.png")
     ) {
+        packageAddon = true
         soldierRange(this)
         soldierMelee(this)
         soldierSpawnRules()
     }
 
     //create a usable mcaddon or mcworld file
-    zipProject("1.1", getWorldResource("odyssey"))
-    //package
-    packageAddon(getWorldResource("odyssey"), null)
+    zipProject("1.1", getResource("world/odyssey"))
 }

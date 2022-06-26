@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.6.20"
+    kotlin("jvm") version "1.7.0"
     id("application")
 }
 
@@ -8,13 +8,13 @@ val localEnvFile = File(
     "${System.getProperties().getProperty("user.home")}${File.separator}.gradle",
     "env-timoliacreative.local.gradle.kts"
 )
-if(localEnvFile.exists()) {
+if (localEnvFile.exists()) {
     //set project extras
     apply(from = localEnvFile.path)
 }
 
 group = "com.timoliacreative"
-version = "0.0.1"
+version = "1"
 
 repositories {
     mavenCentral()
@@ -22,7 +22,7 @@ repositories {
         url = uri(project.extra["maven_repo_url"] as String)
         name = "Reposilite"
 
-        credentials() {
+        credentials {
             username = project.extra["maven_repo_user"] as String
             password = project.extra["maven_repo_pw"] as String
         }
@@ -38,7 +38,13 @@ application {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("de.timoliacreative:tranclate:2.0.99-SNAPCHOT") {
-        isChanging = true
-    }
+    implementation(group = "com.timoliacreative", name = "tranclate", version = "2.1.2")
+    implementation(group = "com.timoliacreative", version = "0.3.4", name = "tranclate-std-lib")
+
+    //test
+    testImplementation(kotlin("test"))
+}
+
+tasks.test {
+    useJUnitPlatform()
 }

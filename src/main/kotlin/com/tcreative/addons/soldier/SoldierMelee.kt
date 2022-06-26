@@ -3,8 +3,7 @@ package com.tcreative.addons.soldier
 import com.tcreative.devtools.tranclate.addon.molang.Query
 import com.tcreative.devtools.tranclate.addon.molang.and
 import com.tcreative.devtools.tranclate.addon.molang.not
-import com.tcreative.devtools.tranclate.builder.getEntityAnimationResource
-import com.tcreative.devtools.tranclate.builder.getEntityGeometryResource
+import com.tcreative.devtools.tranclate.builder.getResource
 import com.tcreative.devtools.tranclate.systemaddon.SystemAddon
 
 fun soldierMelee(systemAddon: SystemAddon) {
@@ -12,8 +11,8 @@ fun soldierMelee(systemAddon: SystemAddon) {
         name("soldier_melee", "Soldier")
         loadTextures(this)
         resource {
-            animations(getEntityAnimationResource("soldier_npc.animation.json"))
-            geometry(getEntityGeometryResource("soldier_npc.geo.json"))
+            animations(getResource("entity/animations/soldier_npc.animation.json"))
+            geometry(getResource("entity/geometries/soldier_npc.geo.json"))
             components {
                 scripts {
                     preAnim(arrayListOf("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;"))
