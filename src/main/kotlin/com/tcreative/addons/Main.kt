@@ -3,6 +3,7 @@ package com.tcreative.addons
 import com.tcreative.addons.soldier.soldierMelee
 import com.tcreative.addons.soldier.soldierRange
 import com.tcreative.addons.soldier.soldierSpawnRules
+import com.tcreative.addons.vase.vase
 import com.tcreative.devtools.tranclate.builder.getResource
 import com.tcreative.devtools.tranclate.builder.zipper.zipProject
 import com.tcreative.devtools.tranclate.systemaddon.addon
@@ -19,6 +20,8 @@ fun main() {
         soldierRange(this)
         soldierMelee(this)
         soldierSpawnRules()
+
+        vase(this)
     }
 
     //create a usable mcaddon or mcworld file
