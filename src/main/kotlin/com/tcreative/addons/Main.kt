@@ -13,9 +13,10 @@ fun main() {
         projectName = "Odyssey Demo",
         projectShort = "od",
         world = getResource("world/odyssey"),
-        version = arrayListOf(1,1,0),
+        version = arrayListOf(1, 1, 0),
         packIcon = getResource("general/pack.png")
     ) {
+        manifestMinEnginVersion = arrayListOf(1, 18, 0)
         packageAddon = true
         soldierRange(this)
         soldierMelee(this)
