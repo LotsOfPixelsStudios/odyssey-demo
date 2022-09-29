@@ -17,6 +17,7 @@ fun main(args: Array<String>) {
         packIcon = getResource("general/pack.png")
     ) {
         manifestMinEnginVersion = arrayListOf(1, 18, 0)
+
         soldierRange(this)
         soldierMelee(this)
         soldierSpawnRules()
