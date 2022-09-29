@@ -11,29 +11,27 @@ fun soldierMelee(systemAddon: SystemAddon) {
         name("soldier_melee", "Soldier")
         loadTextures(this)
         resource {
-            animations(getResource("entity/animations/soldier_npc.animation.json"))
-            geometry(getResource("entity/geometries/soldier_npc.geo.json"))
+            animation(getResource("entity/animations/soldier_npc.animation.json"))
+            geometryLayer(getResource("entity/geometries/soldier_npc.geo.json"))
             components {
                 scripts {
                     preAnim(arrayListOf("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;"))
                 }
             }
-            animControllers {
-                sharedResAnimControllers(this)
-                animController("attack") {
-                    initialState = "default"
-                    animStates {
-                        animState("default") {
-                            transitions { transition("attack", Query.isDelayedAttacking) }
-                        }
-                        animState("attack") {
-                            animation = arrayListOf("attack")
-                            transitions {
-                                transition(
-                                    "default",
-                                    "" not Query.isDelayedAttacking and Query.allAnimationsFinished
-                                )
-                            }
+            sharedResAnimControllers(this)
+            animationController("attack") {
+                initialState = "default"
+                animStates {
+                    animState("default") {
+                        transitions { transition("attack", Query.isDelayedAttacking) }
+                    }
+                    animState("attack") {
+                        animation = arrayListOf("attack")
+                        transitions {
+                            transition(
+                                "default",
+                                "" not Query.isDelayedAttacking and Query.allAnimationsFinished
+                            )
                         }
                     }
                 }

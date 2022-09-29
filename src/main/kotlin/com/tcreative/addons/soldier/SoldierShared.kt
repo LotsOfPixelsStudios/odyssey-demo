@@ -1,7 +1,6 @@
 package com.tcreative.addons.soldier
 
 import com.tcreative.devtools.tranclate.Props
-import com.tcreative.devtools.tranclate.addon.animcontrollers.AnimationControllers
 import com.tcreative.devtools.tranclate.addon.beh.entites.BehEntityComponentGroups
 import com.tcreative.devtools.tranclate.addon.beh.entites.BehEntityComponents
 import com.tcreative.devtools.tranclate.addon.beh.entites.data.Subject
@@ -11,11 +10,12 @@ import com.tcreative.devtools.tranclate.addon.molang.Query
 import com.tcreative.devtools.tranclate.builder.getResource
 import com.tcreative.devtools.tranclate.builder.spawnRules
 import com.tcreative.devtools.tranclate.systemaddon.entityapi.AddonEntity
+import com.tcreative.devtools.tranclate.systemaddon.entityapi.resource.AddonEntityRes
 
 fun loadTextures(addonEntity: AddonEntity) {
     with(addonEntity) {
         resource {
-            textures(
+            textureLayer(
                 arrayListOf(
                     getResource("entity/textures/soldier_npc_0.png"),
                     getResource("entity/textures/soldier_npc_1.png"),
@@ -135,9 +135,9 @@ fun sharedComponents(components: BehEntityComponents) {
     }
 }
 
-fun sharedResAnimControllers(animationControllers: AnimationControllers) {
-    with(animationControllers) {
-        animController("general") {
+fun sharedResAnimControllers(ent: AddonEntityRes) {
+    with(ent) {
+        animationController("general") {
             initialState = "default"
             animStates {
                 animState("default") {

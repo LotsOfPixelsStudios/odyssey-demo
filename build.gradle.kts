@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.7.0"
+    kotlin("jvm") version "1.7.10"
     id("application")
 }
 
@@ -38,10 +38,8 @@ application {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation(group = "com.timoliacreative", name = "tranclate", version = "2.2.5")
-    implementation(group = "com.timoliacreative", version = "0.4.3-furniture-snapchot", name = "tranclate-std-lib") {
-        isChanging = true
-    }
+    implementation(group = "com.timoliacreative", name = "tranclate", version = "2.4.0.3")
+    implementation(group = "com.timoliacreative", version = "0.6.3", name = "tranclate-std-lib")
 
     //test
     testImplementation(kotlin("test"))

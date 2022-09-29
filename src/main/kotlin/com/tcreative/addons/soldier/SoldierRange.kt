@@ -8,16 +8,14 @@ fun soldierRange(systemAddon: SystemAddon) {
         name("soldier_range", "Soldier")
         loadTextures(this)
         resource {
-            animations(getResource("entity/animations/soldier_npc.animation.json"))
-            geometry(getResource("entity/geometries/soldier_npc.geo.json"))
+            animation(getResource("entity/animations/soldier_npc.animation.json"))
+            geometryLayer(getResource("entity/geometries/soldier_npc.geo.json"))
             components {
                 scripts {
                     preAnim(arrayListOf("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;"))
                 }
             }
-            animControllers {
-                sharedResAnimControllers(this)
-            }
+            sharedResAnimControllers(this)
         }
 
         behaviour {

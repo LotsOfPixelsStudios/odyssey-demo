@@ -5,11 +5,11 @@ import com.tcreative.addons.soldier.soldierRange
 import com.tcreative.addons.soldier.soldierSpawnRules
 import com.tcreative.addons.vase.vase
 import com.tcreative.devtools.tranclate.builder.getResource
-import com.tcreative.devtools.tranclate.builder.zipper.zipProject
+import com.tcreative.devtools.tranclate.builder.zipper.zipWorld
 import com.tcreative.devtools.tranclate.systemaddon.addon
 
-fun main() {
-    addon(
+fun main(args: Array<String>) {
+    val prop = addon(
         projectName = "Odyssey Demo",
         projectShort = "od",
         world = getResource("world/odyssey"),
@@ -17,7 +17,6 @@ fun main() {
         packIcon = getResource("general/pack.png")
     ) {
         manifestMinEnginVersion = arrayListOf(1, 18, 0)
-        packageAddon = true
         soldierRange(this)
         soldierMelee(this)
         soldierSpawnRules()
@@ -25,6 +24,12 @@ fun main() {
         vase(this)
     }
 
-    //create a usable mcaddon or mcworld file
-    zipProject("1.1", getResource("world/odyssey"))
+    if (args.contains("zipworld")) {
+        //create a usable mcaddon or mcworld file
+        zipWorld(
+            getResource("world/odyssey"),
+            properties = prop,
+            targetName = "odyssey"
+        )
+    }
 }

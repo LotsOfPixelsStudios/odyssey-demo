@@ -16,7 +16,7 @@ fun vase(addon: SystemAddon) {
         width = 0.2f
 
         resource {
-            animations(getResource("vase/vase2.animation.json"))
+            animation(getResource("vase/vase2.animation.json"))
         }
         breakable {
             animation("rot0_break", 5f)
