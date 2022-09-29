@@ -36,10 +36,8 @@ jobs:
       run: |
         mkdir -p ~/.gradle/
         echo "${GRADLE_PROPERTIES}" > ~/.gradle/env-timoliacreative.local.gradle.kts
-    - name: Build project with Gradle
-      run: ./gradlew build
     - name: Run project with Gradle
-      run: ./gradlew run
+      run: ./gradlew run --args="zip-world package"
     - name: Create Tag
       uses: mathieudutour/github-tag-action@v6.0
       id: tag_version
