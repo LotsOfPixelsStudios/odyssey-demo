@@ -32,13 +32,9 @@ jobs:
         run: |
           ./gradlew --warning-mode all build --no-daemon
       - name: release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         id: create_release
         with:
-          draft: false
-          prerelease: false
-          release_name: ${{ steps.version.outputs.version }}
-          tag_name: ${{ github.ref }}
-          artifacts: "zipVersions/*.mcworld"
+          files: "zipVersions/*.mcworld"
         env:
           GITHUB_TOKEN: ${{ github.token }}
