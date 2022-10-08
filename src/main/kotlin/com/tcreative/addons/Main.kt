@@ -25,7 +25,7 @@ fun main(args: Array<String>) {
         vase(this)
     }
 
-    if (args.contains("zipworld")) {
+    if (args.contains("zip-world")) {
         //create a usable mcaddon or mcworld file
         zipWorld(
             getResource("world/odyssey"),
