@@ -30,7 +30,7 @@ jobs:
           echo "${GRADLE_PROPERTIES}" > ~/.gradle/env-timoliacreative.local.gradle.kts
       - name: Run project with Gradle
         run: |
-          ./gradlew --warning-mode all build --no-daemon
+          ./gradlew --warning-mode all run --no-daemon
       - name: release
         uses: softprops/action-gh-release@v1
         id: create_release
