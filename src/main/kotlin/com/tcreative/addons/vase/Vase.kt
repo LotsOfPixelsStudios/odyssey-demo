@@ -19,7 +19,27 @@ fun vase(addon: SystemAddon) {
             animation(getResource("vase/vase2.animation.json"))
         }
         breakable {
-            animation("rot0_break", 5f)
+            animation("rot0_break", 1f)
+            loot(1f) {
+                pool(rolls = 3) {
+                    entry(type = "item", name = "stick", 1) {
+                        functionSetCounts(1, 2)
+                    }
+                    entry(type = "item", name = "bone", 3) {
+                        functionSetCounts(3, 4)
+                    }
+                    entry(type = "item", name = "apple", 2) {
+                        functionSetCounts(1, 2)
+                    }
+                    entry(type = "item", name = "bread", 3) {
+                        functionSetCounts(4, 4)
+                    }
+                    entry(type = "item", name = "stone_sword", 1) {}
+                    entry(type = "item", name = "iron_ingot", 3) {
+                        functionSetCounts(3, 8)
+                    }
+                }
+            }
         }
     }
 }
