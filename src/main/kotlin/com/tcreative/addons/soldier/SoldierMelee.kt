@@ -2,7 +2,6 @@ package com.tcreative.addons.soldier
 
 import com.tcreative.devtools.tranclate.addon.molang.Query
 import com.tcreative.devtools.tranclate.addon.molang.and
-import com.tcreative.devtools.tranclate.addon.molang.not
 import com.tcreative.devtools.tranclate.builder.getResource
 import com.tcreative.devtools.tranclate.systemaddon.SystemAddon
 
@@ -23,15 +22,14 @@ fun soldierMelee(systemAddon: SystemAddon) {
                 initialState = "default"
                 animStates {
                     animState("default") {
-                        transitions { transition("attack", Query.isDelayedAttacking) }
+                        transitions { transition("attack") { Query.isDelayedAttacking } }
                     }
                     animState("attack") {
                         animation = arrayListOf("attack")
                         transitions {
-                            transition(
-                                "default",
-                                "" not Query.isDelayedAttacking and Query.allAnimationsFinished
-                            )
+                            transition("default") {
+                                !Query.isDelayedAttacking and Query.allAnimationsFinished
+                            }
                         }
                     }
                 }

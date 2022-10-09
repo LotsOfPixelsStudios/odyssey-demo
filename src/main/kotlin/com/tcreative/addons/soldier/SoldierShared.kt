@@ -1,6 +1,6 @@
 package com.tcreative.addons.soldier
 
-import com.tcreative.devtools.tranclate.Props
+import com.tcreative.devtools.tranclate.Props.namespace
 import com.tcreative.devtools.tranclate.addon.beh.entites.BehEntityComponentGroups
 import com.tcreative.devtools.tranclate.addon.beh.entites.BehEntityComponents
 import com.tcreative.devtools.tranclate.addon.beh.entites.data.Subject
@@ -21,7 +21,7 @@ fun loadTextures(addonEntity: AddonEntity) {
                     getResource("entity/textures/soldier_npc_1.png"),
                     getResource("entity/textures/soldier_npc_2.png"),
                     getResource("entity/textures/soldier_npc_3.png")
-                ), Query.variant
+                ), { Query.variant }
             )
         }
     }
@@ -55,7 +55,7 @@ fun spawnEvent(behEntityEvents: BehEntityEvents) {
 
 fun soldierSpawnRules() {
     spawnRules("soldier_melee") {
-        description("${Props.projectShort}:soldier_melee", PopulationControl.MONSTER)
+        description("$namespace:soldier_melee", PopulationControl.MONSTER)
         condition {
             spawnOnSurface()
             herd {
@@ -65,7 +65,7 @@ fun soldierSpawnRules() {
         }
     }
     spawnRules("soldier_range") {
-        description("${Props.projectShort}:soldier_range", PopulationControl.MONSTER)
+        description("$namespace:soldier_range", PopulationControl.MONSTER)
         condition {
             spawnOnSurface()
             herd {
