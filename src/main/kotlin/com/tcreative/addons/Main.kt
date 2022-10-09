@@ -12,7 +12,7 @@ fun main(args: Array<String>) {
     val prop = addon(
         projectName = "Odyssey Demo",
         projectShort = "od",
-        world = getResource("world/odyssey"),
+        world = getResource("world/od_world"),
         version = arrayListOf(1, 1, 0),
         packIcon = getResource("general/pack.png")
     ) {
@@ -28,7 +28,7 @@ fun main(args: Array<String>) {
     if (args.contains("zip-world")) {
         //create a usable mcaddon or mcworld file
         zipWorld(
-            getResource("world/odyssey"),
+            getResource("world/od_world"),
             properties = prop,
             targetName = "odyssey"
         )
