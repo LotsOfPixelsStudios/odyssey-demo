@@ -29,10 +29,10 @@ fun soldierRange(systemAddon: SystemAddon) {
                     priority = 1
                 }
                 shooter {
-                    type = "arrow"
+                    def = "arrow"
                 }
                 attack {
-                    damage = 4
+                    damage = 5
                 }
                 equipment {
                     table("soldier_range") {

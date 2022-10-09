@@ -44,10 +44,10 @@ fun soldierMelee(systemAddon: SystemAddon) {
                 delayedAttack {
                     priority = 1
                     speedMultiplier = 1.5f
-                    reachMultiplier = 2.0f
+                    reachMultiplier = 3.5f
                 }
                 attack {
-                    damage = 5
+                    damage = 7
                 }
                 equipment {
                     table("soldier_melee") {
