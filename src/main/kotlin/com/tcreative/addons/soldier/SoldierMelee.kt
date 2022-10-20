@@ -3,9 +3,9 @@ package com.tcreative.addons.soldier
 import com.tcreative.devtools.tranclate.addon.molang.Query
 import com.tcreative.devtools.tranclate.addon.molang.and
 import com.tcreative.devtools.tranclate.builder.getResource
-import com.tcreative.devtools.tranclate.systemaddon.SystemAddon
+import com.tcreative.devtools.tranclate.systemaddon.Addon
 
-fun soldierMelee(systemAddon: SystemAddon) {
+fun soldierMelee(systemAddon: Addon) {
     systemAddon.entity {
         name("soldier_melee", "Soldier")
         loadTextures(this)

@@ -1,11 +1,10 @@
 package com.tcreative.addons.vase
 
 import com.tcreative.devtools.stdlib.furnitures.furniture
-import com.tcreative.devtools.stdlib.furnitures.seatingFurniture
 import com.tcreative.devtools.tranclate.builder.getResource
-import com.tcreative.devtools.tranclate.systemaddon.SystemAddon
+import com.tcreative.devtools.tranclate.systemaddon.Addon
 
-fun vase(addon: SystemAddon) {
+fun vase(addon: Addon) {
     furniture("vase", "Vase", addon) {
         texture = getResource("vase/vase2.png")
         geometry = getResource("vase/vase2.geo.json")

@@ -1,9 +1,10 @@
 package com.tcreative.addons.soldier
 
 import com.tcreative.devtools.tranclate.builder.getResource
+import com.tcreative.devtools.tranclate.systemaddon.Addon
 import com.tcreative.devtools.tranclate.systemaddon.SystemAddon
 
-fun soldierRange(systemAddon: SystemAddon) {
+fun soldierRange(systemAddon: Addon) {
     systemAddon.entity {
         name("soldier_range", "Soldier")
         loadTextures(this)
