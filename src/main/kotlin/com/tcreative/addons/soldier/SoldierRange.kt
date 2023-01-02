@@ -1,5 +1,6 @@
 package com.tcreative.addons.soldier
 
+import com.tcreative.devtools.stdlib.blockbench.loadBlockbenchFile
 import com.tcreative.devtools.tranclate.builder.getResource
 import com.tcreative.devtools.tranclate.systemaddon.Addon
 import com.tcreative.devtools.tranclate.systemaddon.SystemAddon
@@ -20,8 +21,6 @@ fun soldierRange(systemAddon: Addon) {
         }
 
         behaviour {
-
-
             componentGroups { loadTextureCompGroups(this) }
             components {
                 sharedComponents(this)
