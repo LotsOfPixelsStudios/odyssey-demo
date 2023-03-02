@@ -10,9 +10,11 @@ import com.tcreative.devtools.tranclate.addon.molang.Query
 import com.tcreative.devtools.tranclate.builder.getResource
 import com.tcreative.devtools.tranclate.builder.spawnRules
 import com.tcreative.devtools.tranclate.systemaddon.entityapi.AddonEntity
+import com.tcreative.devtools.tranclate.systemaddon.entityapi.Entity
 import com.tcreative.devtools.tranclate.systemaddon.entityapi.resource.AddonEntityRes
+import com.tcreative.devtools.tranclate.systemaddon.entityapi.resource.ResourceEntity
 
-fun loadTextures(addonEntity: AddonEntity) {
+fun loadTextures(addonEntity: Entity) {
     with(addonEntity) {
         resource {
             textureLayer(
@@ -135,7 +137,7 @@ fun sharedComponents(components: BehEntityComponents) {
     }
 }
 
-fun sharedResAnimControllers(ent: AddonEntityRes) {
+fun sharedResAnimControllers(ent: ResourceEntity) {
     with(ent) {
         animationController("general") {
             initialState = "default"
