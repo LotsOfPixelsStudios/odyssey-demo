@@ -4,6 +4,7 @@ import com.tcreative.addons.soldier.soldierMelee
 import com.tcreative.addons.soldier.soldierRange
 import com.tcreative.addons.soldier.soldierSpawnRules
 import com.tcreative.addons.vase.vase
+import com.tcreative.addons.vase.vaseBlock
 import com.tcreative.devtools.tranclate.builder.getResource
 import com.tcreative.devtools.tranclate.builder.zipper.zipWorld
 import com.tcreative.devtools.tranclate.systemaddon.AddonConfig
@@ -16,16 +17,18 @@ fun main(args: Array<String>) {
         world = getResource("world/od_world")
         version = arrayListOf(1, 1, 0)
         packIcon = getResource("general/pack.png")
+        targetMcVersion = arrayListOf(1, 19, 73)
     }
 
     val prop = addon(config) {
-        manifestMinEnginVersion = arrayListOf(1, 18, 0)
+        manifestMinEnginVersion = arrayListOf(1, 19, 73)
 
         soldierRange(this)
         soldierMelee(this)
         soldierSpawnRules()
 
         vase(this)
+        vaseBlock()
     }
 
     if (args.contains("zip-world")) {
