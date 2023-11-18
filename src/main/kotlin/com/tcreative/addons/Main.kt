@@ -1,24 +1,23 @@
 package com.tcreative.addons
 
+import com.lop.devtools.monstera.addon.addon
+import com.lop.devtools.monstera.addon.dev.zipper.zipWorld
+import com.lop.devtools.monstera.config
+import com.lop.devtools.monstera.files.getResource
 import com.tcreative.addons.soldier.soldierMelee
 import com.tcreative.addons.soldier.soldierRange
 import com.tcreative.addons.soldier.soldierSpawnRules
 import com.tcreative.addons.vase.vase
-import com.tcreative.devtools.tranclate.builder.getResource
-import com.tcreative.devtools.tranclate.builder.zipper.zipWorld
-import com.tcreative.devtools.tranclate.systemaddon.AddonConfig
-import com.tcreative.devtools.tranclate.systemaddon.addon
 
 fun main(args: Array<String>) {
-    val config = AddonConfig {
-        projectName = "Odyssey Demo"
+    val config = config("Odyssey Demo") {
         projectShort = "od"
         world = getResource("world/od_world")
-        version = arrayListOf(1, 1, 0)
+        version = arrayListOf(1, 2, 0)
         packIcon = getResource("general/pack.png")
     }
 
-    val prop = addon(config) {
+    addon(config) {
         manifestMinEnginVersion = arrayListOf(1, 18, 0)
 
         soldierRange(this)
@@ -31,8 +30,7 @@ fun main(args: Array<String>) {
     if (args.contains("zip-world")) {
         //create a usable mcaddon or mcworld file
         zipWorld(
-            getResource("world/od_world"),
-            properties = prop,
+            config,
             targetName = "odyssey"
         )
     }

@@ -1,13 +1,12 @@
 package com.tcreative.addons.soldier
 
-import com.tcreative.devtools.tranclate.addon.molang.Query
-import com.tcreative.devtools.tranclate.addon.molang.and
-import com.tcreative.devtools.tranclate.builder.getResource
-import com.tcreative.devtools.tranclate.systemaddon.Addon
+import com.lop.devtools.monstera.addon.Addon
+import com.lop.devtools.monstera.addon.molang.Query
+import com.lop.devtools.monstera.addon.molang.and
+import com.lop.devtools.monstera.files.getResource
 
 fun soldierMelee(systemAddon: Addon) {
-    systemAddon.entity {
-        name("soldier_melee", "Soldier")
+    systemAddon.entity("soldier_melee", "Soldier") {
         loadTextures(this)
         resource {
             animation(getResource("entity/animations/soldier_npc.animation.json"))
@@ -18,7 +17,7 @@ fun soldierMelee(systemAddon: Addon) {
                 }
             }
             sharedResAnimControllers(this)
-            animationController("attack") {
+            animationController("attack_debug") {
                 initialState = "default"
                 animStates {
                     animState("default") {
@@ -49,8 +48,9 @@ fun soldierMelee(systemAddon: Addon) {
                 attack {
                     damage = 7
                 }
+                equipItem()
                 equipment {
-                    table("soldier_melee") {
+                    table(addon, "soldier_melee") {
                         pool(rolls = 1) {
                             entry(type = "item", name = "minecraft:golden_sword", weight = 1) {
 

@@ -1,15 +1,15 @@
 package com.tcreative.addons.vase
 
-import com.tcreative.devtools.stdlib.furnitures.furniture
-import com.tcreative.devtools.tranclate.builder.getResource
-import com.tcreative.devtools.tranclate.systemaddon.Addon
+import com.lop.devtools.monstera.addon.Addon
+import com.lop.devtools.monstera.files.getResource
+import com.lop.devtools.stdlib.furnitures.furniture
 
 fun vase(addon: Addon) {
     furniture("vase", "Vase", addon) {
         texture = getResource("vase/vase2.png")
         geometry = getResource("vase/vase2.geo.json")
         icon {
-            eggByFile(getResource("vase/vase2_item.png"))
+            eggByFile(getResource("vase/vase2_item.png"), addon)
         }
         height = 0.6f
         width = 0.2f

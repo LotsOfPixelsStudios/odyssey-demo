@@ -1,18 +1,18 @@
 package com.tcreative.addons.soldier
 
-import com.tcreative.devtools.tranclate.Props.namespace
-import com.tcreative.devtools.tranclate.addon.beh.entites.BehEntityComponentGroups
-import com.tcreative.devtools.tranclate.addon.beh.entites.BehEntityComponents
-import com.tcreative.devtools.tranclate.addon.beh.entites.data.Subject
-import com.tcreative.devtools.tranclate.addon.beh.entites.events.BehEntityEvents
-import com.tcreative.devtools.tranclate.addon.beh.spawnrules.PopulationControl
-import com.tcreative.devtools.tranclate.addon.molang.Query
-import com.tcreative.devtools.tranclate.builder.getResource
-import com.tcreative.devtools.tranclate.builder.spawnRules
-import com.tcreative.devtools.tranclate.systemaddon.entityapi.AddonEntity
-import com.tcreative.devtools.tranclate.systemaddon.entityapi.resource.AddonEntityRes
+import com.lop.devtools.monstera.addon.Addon
+import com.lop.devtools.monstera.addon.entity.Entity
+import com.lop.devtools.monstera.addon.entity.resource.ResourceEntity
+import com.lop.devtools.monstera.addon.molang.Query
+import com.lop.devtools.monstera.files.beh.entitiy.BehEntityComponentGroups
+import com.lop.devtools.monstera.files.beh.entitiy.BehEntityComponents
+import com.lop.devtools.monstera.files.beh.entitiy.data.Subject
+import com.lop.devtools.monstera.files.beh.entitiy.events.BehEntityEvents
+import com.lop.devtools.monstera.files.beh.spawnrules.BehSpawnRules
+import com.lop.devtools.monstera.files.beh.spawnrules.PopulationControl
+import com.lop.devtools.monstera.files.getResource
 
-fun loadTextures(addonEntity: AddonEntity) {
+fun loadTextures(addonEntity: Entity) {
     with(addonEntity) {
         resource {
             textureLayer(
@@ -53,8 +53,9 @@ fun spawnEvent(behEntityEvents: BehEntityEvents) {
     }
 }
 
-fun soldierSpawnRules() {
-    spawnRules("soldier_melee") {
+fun Addon.soldierSpawnRules() {
+    val namespace = config.namespace
+    BehSpawnRules().apply {
         description("$namespace:soldier_melee", PopulationControl.MONSTER)
         condition {
             spawnOnSurface()
@@ -63,8 +64,8 @@ fun soldierSpawnRules() {
                 minSize(2)
             }
         }
-    }
-    spawnRules("soldier_range") {
+    }.unsafe.build("soldier_melee", config.paths.behSpawnRules)
+    BehSpawnRules().apply {
         description("$namespace:soldier_range", PopulationControl.MONSTER)
         condition {
             spawnOnSurface()
@@ -73,7 +74,7 @@ fun soldierSpawnRules() {
                 minSize(1)
             }
         }
-    }
+    }.unsafe.build("soldier_range", config.paths.behSpawnRules)
 }
 
 fun sharedComponents(components: BehEntityComponents) {
@@ -135,7 +136,7 @@ fun sharedComponents(components: BehEntityComponents) {
     }
 }
 
-fun sharedResAnimControllers(ent: AddonEntityRes) {
+fun sharedResAnimControllers(ent: ResourceEntity) {
     with(ent) {
         animationController("general") {
             initialState = "default"

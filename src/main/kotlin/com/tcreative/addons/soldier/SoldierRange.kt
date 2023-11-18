@@ -1,12 +1,10 @@
 package com.tcreative.addons.soldier
 
-import com.tcreative.devtools.tranclate.builder.getResource
-import com.tcreative.devtools.tranclate.systemaddon.Addon
-import com.tcreative.devtools.tranclate.systemaddon.SystemAddon
+import com.lop.devtools.monstera.addon.Addon
+import com.lop.devtools.monstera.files.getResource
 
 fun soldierRange(systemAddon: Addon) {
-    systemAddon.entity {
-        name("soldier_range", "Soldier")
+    systemAddon.entity("soldier_range", "Soldier") {
         loadTextures(this)
         resource {
             animation(getResource("entity/animations/soldier_npc.animation.json"))
@@ -36,14 +34,14 @@ fun soldierRange(systemAddon: Addon) {
                     damage = 5
                 }
                 equipment {
-                    table("soldier_range") {
+                    table(addon, "soldier_range") {
                         pool(rolls = 1) {
                             entry(type = "item", name = "minecraft:bow", weight = 1) { }
                         }
                     }
                 }
                 loot {
-                    genTable("soldier") {
+                    genTable("soldier", addon) {
                         pool {
                             entry(type = "item", name = "arrow", weight = 10) {
                                 functionSetCount(4)
