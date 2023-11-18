@@ -8,6 +8,7 @@ import com.tcreative.addons.soldier.soldierMelee
 import com.tcreative.addons.soldier.soldierRange
 import com.tcreative.addons.soldier.soldierSpawnRules
 import com.tcreative.addons.vase.vase
+import com.tcreative.addons.vase.vaseBlock
 
 fun main(args: Array<String>) {
     val config = config("Odyssey Demo") {
@@ -25,6 +26,7 @@ fun main(args: Array<String>) {
         soldierSpawnRules()
 
         vase(this)
+        vaseBlock()
     }
 
     if (args.contains("zip-world")) {
