@@ -32,6 +32,9 @@ jobs:
       - name: Run project with Gradle
         run: |
           ./gradlew --warning-mode all run --no-daemon --args="zip-world package"
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          LOCALAPPDATA: ''
       - name: release
         uses: softprops/action-gh-release@v1
         id: create_release
@@ -39,4 +42,3 @@ jobs:
           files: "zipVersions/*.mcworld"
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          LOCALAPPDATA: ''
