@@ -39,3 +39,4 @@ jobs:
           files: "zipVersions/*.mcworld"
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          LOCALAPPDATA: ''
