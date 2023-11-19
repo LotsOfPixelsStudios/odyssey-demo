@@ -24,6 +24,7 @@ jobs:
       - name: Credentials
         env:
           GRADLE_PROPERTIES: ${{ secrets.GRADLE_PROPERTIES }}
+          LOCALAPPDATA: ''
         shell: bash
         run: |
           mkdir -p ~/.gradle/
