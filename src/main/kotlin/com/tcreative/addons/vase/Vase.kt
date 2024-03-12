@@ -1,15 +1,15 @@
 package com.tcreative.addons.vase
 
-import com.tcreative.devtools.stdlib.furnitures.furniture
-import com.tcreative.devtools.tranclate.builder.getResource
-import com.tcreative.devtools.tranclate.systemaddon.Addon
+import com.lop.devtools.monstera.addon.Addon
+import com.lop.devtools.monstera.files.getResource
+import com.lop.devtools.stdlib.furnitures.furniture
 
 fun vase(addon: Addon) {
     furniture("vase", "Vase", addon) {
         texture = getResource("vase/vase2.png")
         geometry = getResource("vase/vase2.geo.json")
         icon {
-            eggByFile(getResource("vase/vase2_item.png"))
+            eggByFile(getResource("vase/vase2_item.png"), addon)
         }
         height = 0.6f
         width = 0.2f
@@ -20,22 +20,52 @@ fun vase(addon: Addon) {
         breakable {
             animation("rot0_break", 1f)
             loot(1f) {
-                pool(rolls = 3) {
-                    entry(type = "item", name = "stick", 1) {
-                        functionSetCounts(1, 2)
+                pool {
+                    rolls(3)
+                    entry {
+                        type = "item"
+                        identifier = "stick"
+                        weight = 1
+                        functions {
+                            functionSetCounts(1, 2)
+                        }
                     }
-                    entry(type = "item", name = "bone", 3) {
-                        functionSetCounts(3, 4)
+                    entry {
+                        type = "item"
+                        identifier = "bone"
+                        weight = 3
+                        functions {
+                            functionSetCounts(3, 4)
+                        }
                     }
-                    entry(type = "item", name = "apple", 2) {
-                        functionSetCounts(1, 2)
+                    entry {
+                        type = "item"
+                        identifier = "apple"
+                        weight = 2
+                        functions {
+                            functionSetCounts(1, 2)
+                        }
                     }
-                    entry(type = "item", name = "bread", 3) {
-                        functionSetCounts(4, 4)
+                    entry {
+                        type = "item"
+                        identifier = "bread"
+                        weight = 3
+                        functions {
+                            functionSetCounts(4, 4)
+                        }
                     }
-                    entry(type = "item", name = "stone_sword", 1) {}
-                    entry(type = "item", name = "iron_ingot", 3) {
-                        functionSetCounts(3, 8)
+                    entry {
+                        type = "item"
+                        identifier = "iron_ingot"
+                        weight = 3
+                        functions {
+                            functionSetCounts(3, 8)
+                        }
+                    }
+                    entry {
+                        type = "item"
+                        identifier = "stone_sword"
+                        weight = 1
                     }
                 }
             }

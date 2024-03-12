@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.7.20"
+    kotlin("jvm") version "1.9.20"
     id("application")
 }
 
@@ -47,8 +47,13 @@ application {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("com.timoliacreative:tranclate:2.9-dev11")
-    implementation("com.timoliacreative:tranclate-std-lib:0.9.1-dev1")
+    implementation("com.lotsofpixelsstudios:monstera:0.4.0-SNAPSHOT6")
+    implementation("com.lotsofpixelsstudios:monstera-std-lib:0.10-monstera-3")
+
+    // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
+    implementation("ch.qos.logback:logback-classic:1.4.12")
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation("org.slf4j:slf4j-api:2.0.9")
 
     //test
     testImplementation(kotlin("test"))

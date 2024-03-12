@@ -1,28 +1,29 @@
 package com.tcreative.addons.soldier
 
-import com.tcreative.devtools.tranclate.builder.getResource
-import com.tcreative.devtools.tranclate.systemaddon.Addon
+import com.lop.devtools.monstera.addon.Addon
+import com.lop.devtools.monstera.files.getResource
 
 fun soldierRange(systemAddon: Addon) {
-    systemAddon.entity {
-        name("soldier_range", "Soldier")
+    systemAddon.entity("soldier_range", "Soldier") {
         loadTextures(this)
         resource {
             animation(getResource("entity/animations/soldier_npc.animation.json"))
             geometryLayer(getResource("entity/geometries/soldier_npc.geo.json"))
             components {
                 scripts {
-                    preAnim(arrayListOf("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;"))
+                    preAnimationEntry("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;")
                 }
             }
             sharedResAnimControllers(this)
         }
 
         behaviour {
-            componentGroups { loadTextureCompGroups(this) }
+            loadTextureCompGroups()
             components {
                 sharedComponents(this)
-                typeFamily(arrayListOf("mob", "addon"))
+                typeFamily {
+                    familyData = arrayListOf("mob", "addon")
+                }
                 behRangedAttack {
                     priority = 1
                 }
@@ -34,25 +35,40 @@ fun soldierRange(systemAddon: Addon) {
                 }
                 equipment {
                     table("soldier_range") {
-                        pool(rolls = 1) {
-                            entry(type = "item", name = "minecraft:bow", weight = 1) { }
+                        pool {
+                            rolls(1)
+                            entry {
+                                type = "item"
+                                identifier = "bow"
+                                weight = 1
+                            }
                         }
                     }
                 }
                 loot {
-                    genTable("soldier") {
+                    table("soldier_range") {
                         pool {
-                            entry(type = "item", name = "arrow", weight = 10) {
-                                functionSetCount(4)
+                            entry {
+                                type = "item"
+                                identifier = "arrow"
+                                weight = 10
+                                functions {
+                                    functionSetCount(4)
+                                }
                             }
-                            entry(type = "item", name = "bone", weight = 10) {
-                                functionSetCount(2)
+                            entry {
+                                type = "item"
+                                identifier = "bone"
+                                weight = 8
+                                functions {
+                                    functionSetCount(2)
+                                }
                             }
                         }
                     }
                 }
             }
-            events { spawnEvent(this) }
+            spawnEvent()
         }
     }
 }

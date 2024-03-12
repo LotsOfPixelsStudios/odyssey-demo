@@ -1,47 +1,43 @@
 package com.tcreative.addons.soldier
 
-import com.tcreative.devtools.tranclate.addon.molang.Query
-import com.tcreative.devtools.tranclate.addon.molang.and
-import com.tcreative.devtools.tranclate.builder.getResource
-import com.tcreative.devtools.tranclate.systemaddon.Addon
+import com.lop.devtools.monstera.addon.Addon
+import com.lop.devtools.monstera.addon.entity.Entity
+import com.lop.devtools.monstera.addon.molang.Query
+import com.lop.devtools.monstera.addon.molang.and
+import com.lop.devtools.monstera.files.getResource
 
-fun soldierMelee(systemAddon: Addon) {
-    systemAddon.entity {
-        name("soldier_melee", "Soldier")
+fun soldierMelee(systemAddon: Addon): Entity {
+    return systemAddon.entity("soldier_melee", "Soldier") {
         loadTextures(this)
         resource {
             animation(getResource("entity/animations/soldier_npc.animation.json"))
             geometryLayer(getResource("entity/geometries/soldier_npc.geo.json"))
             components {
                 scripts {
-                    preAnim(arrayListOf("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;"))
+                    preAnimationEntry("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;")
                 }
             }
             sharedResAnimControllers(this)
             animationController("attack") {
                 initialState = "default"
-                animStates {
-                    animState("default") {
-                        transitions { transition("attack") { Query.isDelayedAttacking } }
-                    }
-                    animState("attack") {
-                        animation = arrayListOf("attack")
-                        transitions {
-                            transition("default") {
-                                !Query.isDelayedAttacking and Query.allAnimationsFinished
-                            }
-                        }
-                    }
+                state("default") {
+                    transition("attack", Query.isDelayedAttacking)
+                }
+                state("attack") {
+                    transition("default", !Query.isDelayedAttacking and Query.allAnimationsFinished)
+                    animations("attack")
                 }
             }
         }
 
         behaviour {
-            componentGroups { loadTextureCompGroups(this) }
+            loadTextureCompGroups()
             components {
                 sharedComponents(this)
-                typeFamily(arrayListOf("mob", "addon"))
-                delayedAttack {
+                typeFamily {
+                    familyData = arrayListOf("mob", "addon")
+                }
+                behDelayedAttack {
                     priority = 1
                     speedMultiplier = 1.5f
                     reachMultiplier = 3.5f
@@ -51,15 +47,18 @@ fun soldierMelee(systemAddon: Addon) {
                 }
                 equipment {
                     table("soldier_melee") {
-                        pool(rolls = 1) {
-                            entry(type = "item", name = "minecraft:golden_sword", weight = 1) {
-
+                        pool {
+                            rolls(1)
+                            entry {
+                                type = "item"
+                                identifier = "minecraft:golden_sword"
+                                weight = 1
                             }
                         }
                     }
                 }
             }
-            events { spawnEvent(this) }
+            spawnEvent()
         }
     }
 }
