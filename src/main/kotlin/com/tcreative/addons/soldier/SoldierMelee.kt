@@ -1,23 +1,31 @@
 package com.tcreative.addons.soldier
 
 import com.lop.devtools.monstera.addon.Addon
-import com.lop.devtools.monstera.addon.entity.Entity
 import com.lop.devtools.monstera.addon.molang.Query
 import com.lop.devtools.monstera.addon.molang.and
 import com.lop.devtools.monstera.files.getResource
+import com.tcreative.addons.soldier.components.loadSoldierAnimations
+import com.tcreative.addons.soldier.components.loadVariants
+import com.tcreative.addons.soldier.components.soldierComponents
+import com.tcreative.addons.soldier.components.soldierSpawnRule
+import java.awt.Color
 
-fun soldierMelee(systemAddon: Addon): Entity {
-    return systemAddon.entity("soldier_melee", "Soldier") {
-        loadTextures(this)
+fun Addon.soldierMelee() {
+    entity("soldier_melee", "Soldier") {
+        loadVariants()
+        loadSoldierAnimations()
+        soldierSpawnRule()
+        soldierComponents()
         resource {
-            animation(getResource("entity/animations/soldier_npc.animation.json"))
             geometryLayer(getResource("entity/geometries/soldier_npc.geo.json"))
             components {
+                spawnEgg {
+                    eggByColor(Color.BLACK, Color.BLUE)
+                }
                 scripts {
                     preAnimationEntry("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;")
                 }
             }
-            sharedResAnimControllers(this)
             animationController("attack") {
                 initialState = "default"
                 state("default") {
@@ -29,11 +37,8 @@ fun soldierMelee(systemAddon: Addon): Entity {
                 }
             }
         }
-
         behaviour {
-            loadTextureCompGroups()
             components {
-                sharedComponents(this)
                 typeFamily {
                     familyData = arrayListOf("mob", "addon")
                 }
@@ -58,7 +63,6 @@ fun soldierMelee(systemAddon: Addon): Entity {
                     }
                 }
             }
-            spawnEvent()
         }
     }
 }

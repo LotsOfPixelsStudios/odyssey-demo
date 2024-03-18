@@ -2,30 +2,35 @@ package com.tcreative.addons.soldier
 
 import com.lop.devtools.monstera.addon.Addon
 import com.lop.devtools.monstera.files.getResource
+import com.tcreative.addons.soldier.components.loadSoldierAnimations
+import com.tcreative.addons.soldier.components.loadVariants
+import com.tcreative.addons.soldier.components.soldierComponents
+import java.awt.Color
 
-fun soldierRange(systemAddon: Addon) {
-    systemAddon.entity("soldier_range", "Soldier") {
-        loadTextures(this)
+fun Addon.soldierRange() {
+    entity("soldier_range", "Soldier") {
+        loadVariants()
+        loadSoldierAnimations()
+        soldierComponents()
         resource {
-            animation(getResource("entity/animations/soldier_npc.animation.json"))
             geometryLayer(getResource("entity/geometries/soldier_npc.geo.json"))
             components {
+                spawnEgg {
+                    eggByColor(Color.BLACK, Color.BLUE)
+                }
                 scripts {
                     preAnimationEntry("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;")
                 }
             }
-            sharedResAnimControllers(this)
         }
-
         behaviour {
-            loadTextureCompGroups()
             components {
-                sharedComponents(this)
                 typeFamily {
                     familyData = arrayListOf("mob", "addon")
                 }
                 behRangedAttack {
                     priority = 1
+                    attackRadius = 15
                 }
                 shooter {
                     def = "arrow"
@@ -68,7 +73,6 @@ fun soldierRange(systemAddon: Addon) {
                     }
                 }
             }
-            spawnEvent()
         }
     }
 }

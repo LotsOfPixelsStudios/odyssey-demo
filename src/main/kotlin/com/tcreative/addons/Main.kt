@@ -6,7 +6,6 @@ import com.lop.devtools.monstera.addon.dev.zipper.zipWorld
 import com.lop.devtools.monstera.files.getResource
 import com.tcreative.addons.soldier.soldierMelee
 import com.tcreative.addons.soldier.soldierRange
-import com.tcreative.addons.soldier.soldierSpawnRules
 import com.tcreative.addons.vase.vase
 import com.tcreative.addons.vase.vaseBlock
 
@@ -21,12 +20,8 @@ fun main(args: Array<String>) {
     }
 
     addon(conf) {
-        soldierRange(this)
-        soldierMelee(this).also {
-            it.behaviour {
-                soldierSpawnRules()
-            }
-        }
+        soldierRange()
+        soldierMelee()
 
         vase(this)
         vaseBlock()
