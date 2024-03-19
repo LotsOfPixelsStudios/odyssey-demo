@@ -3,6 +3,7 @@ package com.tcreative.addons.vase
 import com.lop.devtools.monstera.addon.Addon
 import com.lop.devtools.monstera.files.getResource
 import com.lop.devtools.stdlib.furnitures.furniture
+import com.tcreative.addons.Odysee
 
 fun vase(addon: Addon) {
     furniture("vase", "Vase", addon) {

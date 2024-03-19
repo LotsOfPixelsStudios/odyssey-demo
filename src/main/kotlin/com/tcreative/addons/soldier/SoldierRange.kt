@@ -2,22 +2,20 @@ package com.tcreative.addons.soldier
 
 import com.lop.devtools.monstera.addon.Addon
 import com.lop.devtools.monstera.files.getResource
+import com.tcreative.addons.Odysee
 import com.tcreative.addons.soldier.components.loadSoldierAnimations
 import com.tcreative.addons.soldier.components.loadVariants
 import com.tcreative.addons.soldier.components.soldierComponents
-import java.awt.Color
 
 fun Addon.soldierRange() {
-    entity("soldier_range", "Soldier") {
+    entity("soldier_range", "§cSoldier (Ranged)§r") {
         loadVariants()
         loadSoldierAnimations()
         soldierComponents()
         resource {
             geometryLayer(getResource("entity/geometries/soldier_npc.geo.json"))
             components {
-                spawnEgg {
-                    eggByColor(Color.BLACK, Color.BLUE)
-                }
+                spawnEgg("§cSpawn Soldier (Ranged)§r", Odysee.hostileSpawnEgg)
                 scripts {
                     preAnimationEntry("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;")
                 }
@@ -51,7 +49,7 @@ fun Addon.soldierRange() {
                     }
                 }
                 loot {
-                    table("soldier_range") {
+                    table("soldier_range_drops") {
                         pool {
                             entry {
                                 type = "item"

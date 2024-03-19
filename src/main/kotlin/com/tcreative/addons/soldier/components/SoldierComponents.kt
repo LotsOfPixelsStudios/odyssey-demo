@@ -2,13 +2,37 @@ package com.tcreative.addons.soldier.components
 
 import com.lop.devtools.monstera.addon.entity.Entity
 import com.lop.devtools.monstera.files.beh.entitiy.data.Subject
+import com.lop.devtools.monstera.files.res.sounds.SoundEvent
 
 fun Entity.soldierComponents() {
+    addon.sounds {
+        categorySounds {
+            individualEventSounds {
+                entitySounds {
+                    soundEventGroup(getIdentifier()) {
+                        event(SoundEvent.AMBIENT) {
+                            sound("mob.villager.haggle")
+                            pitch(0.8)
+                        }
+                        event(SoundEvent.HIT) {
+                            sound("mob.villager.hit")
+                            pitch(0.9)
+                        }
+                    }
+                }
+            }
+        }
+    }
     behaviour {
         components {
+            ambientSoundInterval {
+                value = 2
+                range = 4
+                eventName = "ambient"
+            }
             collisionBox {
-                height = 1.8f
-                width = 0.6f
+                height = 1.8
+                width = 0.6
             }
             physics { }
             pushable { }
@@ -17,9 +41,11 @@ fun Entity.soldierComponents() {
                 avoidWater = true
                 canPathOverWater = false
             }
-            behEquipItem { }
+            behEquipItem {
+                priority = 2
+            }
             movement {
-                value = 0.2f
+                value = 0.2
             }
             jumpStatic { }
             movementBasic { }
@@ -36,6 +62,7 @@ fun Entity.soldierComponents() {
                 priority = 1
                 entityTypes {
                     type {
+                        sprintSpeedMultiplier = 1.2f
                         filters {
                             isFamily(subject = Subject.OTHER, value = "monster")
                         }

@@ -18,6 +18,10 @@ fun Entity.soldierSpawnRule() {
                     weight = 30
                     entityType = addon.config.namespace + ":soldier_range"
                 }
+                permuteType {
+                    weight = 70
+                    entityType = addon.config.namespace + ":soldier_melee"
+                }
             }
         }
     }
