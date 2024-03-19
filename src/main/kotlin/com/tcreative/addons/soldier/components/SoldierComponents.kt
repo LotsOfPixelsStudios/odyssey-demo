@@ -2,10 +2,23 @@ package com.tcreative.addons.soldier.components
 
 import com.lop.devtools.monstera.addon.entity.Entity
 import com.lop.devtools.monstera.files.beh.entitiy.data.Subject
+import com.lop.devtools.monstera.files.res.sounds.SoundCategory
 import com.lop.devtools.monstera.files.res.sounds.SoundEvent
 
 fun Entity.soldierComponents() {
     addon.sounds {
+        soundsDefinitions {
+            newSoundDef("mob.${getIdentifier()}.ambient") {
+                category = SoundCategory.NEUTRAL
+                sound("sounds/mob/villager/yes1")
+                sound("sounds/mob/villager/yes2")
+                sound("sounds/mob/villager/yes3")
+                sound("sounds/mob/villager/idle1")
+                sound("sounds/mob/villager/idle2")
+                sound("sounds/mob/villager/idle3")
+                sound("sounds/mob/villager/haggle1")
+            }
+        }
         categorySounds {
             individualEventSounds {
                 entitySounds {
