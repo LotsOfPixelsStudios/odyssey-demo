@@ -16,7 +16,7 @@ if (localEnvFile.exists()) {
     project.extra.set("gitlab_token", System.getenv("CI_JOB_TOKEN") as String)
 }
 
-group = "com.lotsofpixelsstudios"
+group = "com.timoliacreative"
 version = "1"
 
 fun MavenArtifactRepository.authTcGitlab() {
@@ -32,6 +32,10 @@ fun MavenArtifactRepository.authTcGitlab() {
 repositories {
     mavenCentral()
     maven {
+        url = uri("https://git.timoliacreative.de/api/v4/projects/32/packages/maven")
+        authTcGitlab()
+    }
+    maven {
         url = uri("https://git.timoliacreative.de/api/v4/projects/102/packages/maven")
         authTcGitlab()
     }
@@ -43,11 +47,11 @@ application {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("com.lotsofpixelsstudios:monstera:0.2.4")
-    implementation("com.lotsofpixelsstudios:monstera-std-lib:0.10-monstera-2")
+    implementation("com.lotsofpixelsstudios:monstera:0.4.0-SNAPSHOT14")
+    implementation("com.lotsofpixelsstudios:monstera-std-lib:0.10-monstera-5")
 
     // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
-    implementation("ch.qos.logback:logback-classic:1.4.11")
+    implementation("ch.qos.logback:logback-classic:1.4.12")
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
     implementation("org.slf4j:slf4j-api:2.0.9")
 

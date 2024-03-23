@@ -4,43 +4,44 @@ import com.lop.devtools.monstera.addon.Addon
 import com.lop.devtools.monstera.addon.molang.Query
 import com.lop.devtools.monstera.addon.molang.and
 import com.lop.devtools.monstera.files.getResource
+import com.tcreative.addons.Odysee
+import com.tcreative.addons.soldier.components.loadSoldierAnimations
+import com.tcreative.addons.soldier.components.loadVariants
+import com.tcreative.addons.soldier.components.soldierComponents
+import com.tcreative.addons.soldier.components.soldierSpawnRule
+import java.awt.Color
 
-fun soldierMelee(systemAddon: Addon) {
-    systemAddon.entity("soldier_melee", "Soldier") {
-        loadTextures(this)
+fun Addon.soldierMelee() {
+    entity("soldier_melee", "§cSoldier (Melee)§r") {
+        loadVariants()
+        loadSoldierAnimations()
+        soldierSpawnRule()
+        soldierComponents()
         resource {
-            animation(getResource("entity/animations/soldier_npc.animation.json"))
             geometryLayer(getResource("entity/geometries/soldier_npc.geo.json"))
             components {
+                spawnEgg("§cSpawn Soldier (Melee)§r", Odysee.hostileSpawnEgg)
                 scripts {
-                    preAnim(arrayListOf("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;"))
+                    preAnimationEntry("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;")
                 }
             }
-            sharedResAnimControllers(this)
-            animationController("attack_debug") {
+            animationController("attack_controller") {
                 initialState = "default"
-                animStates {
-                    animState("default") {
-                        transitions { transition("attack") { Query.isDelayedAttacking } }
-                    }
-                    animState("attack") {
-                        animation = arrayListOf("attack")
-                        transitions {
-                            transition("default") {
-                                !Query.isDelayedAttacking and Query.allAnimationsFinished
-                            }
-                        }
-                    }
+                state("default") {
+                    transition("attack", Query.isDelayedAttacking)
+                }
+                state("attack") {
+                    transition("default", !Query.isDelayedAttacking and Query.allAnimationsFinished)
+                    animations("attack")
                 }
             }
         }
-
         behaviour {
-            componentGroups { loadTextureCompGroups(this) }
             components {
-                sharedComponents(this)
-                typeFamily(arrayListOf("mob", "addon"))
-                delayedAttack {
+                typeFamily {
+                    familyData = arrayListOf("mob", "addon")
+                }
+                behDelayedAttack {
                     priority = 1
                     speedMultiplier = 1.5f
                     reachMultiplier = 3.5f
@@ -48,18 +49,19 @@ fun soldierMelee(systemAddon: Addon) {
                 attack {
                     damage = 7
                 }
-                equipItem()
                 equipment {
-                    table(addon, "soldier_melee") {
-                        pool(rolls = 1) {
-                            entry(type = "item", name = "minecraft:golden_sword", weight = 1) {
-
+                    table("soldier_melee") {
+                        pool {
+                            rolls(1)
+                            entry {
+                                type = "item"
+                                identifier = "minecraft:golden_sword"
+                                weight = 1
                             }
                         }
                     }
                 }
             }
-            events { spawnEvent(this) }
         }
     }
 }

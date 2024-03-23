@@ -2,30 +2,33 @@ package com.tcreative.addons.soldier
 
 import com.lop.devtools.monstera.addon.Addon
 import com.lop.devtools.monstera.files.getResource
+import com.tcreative.addons.Odysee
+import com.tcreative.addons.soldier.components.loadSoldierAnimations
+import com.tcreative.addons.soldier.components.loadVariants
+import com.tcreative.addons.soldier.components.soldierComponents
 
-fun soldierRange(systemAddon: Addon) {
-    systemAddon.entity("soldier_range", "Soldier") {
-        loadTextures(this)
+fun Addon.soldierRange() {
+    entity("soldier_range", "§cSoldier (Ranged)§r") {
+        loadVariants()
+        loadSoldierAnimations()
+        soldierComponents()
         resource {
-            animation(getResource("entity/animations/soldier_npc.animation.json"))
             geometryLayer(getResource("entity/geometries/soldier_npc.geo.json"))
             components {
+                spawnEgg("§cSpawn Soldier (Ranged)§r", Odysee.hostileSpawnEgg)
                 scripts {
-                    preAnim(arrayListOf("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;"))
+                    preAnimationEntry("variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;")
                 }
             }
-            sharedResAnimControllers(this)
         }
-
         behaviour {
-
-
-            componentGroups { loadTextureCompGroups(this) }
             components {
-                sharedComponents(this)
-                typeFamily(arrayListOf("mob", "addon"))
+                typeFamily {
+                    familyData = arrayListOf("mob", "addon")
+                }
                 behRangedAttack {
                     priority = 1
+                    attackRadius = 15
                 }
                 shooter {
                     def = "arrow"
@@ -34,26 +37,40 @@ fun soldierRange(systemAddon: Addon) {
                     damage = 5
                 }
                 equipment {
-                    table(addon, "soldier_range") {
-                        pool(rolls = 1) {
-                            entry(type = "item", name = "minecraft:bow", weight = 1) { }
+                    table("soldier_range") {
+                        pool {
+                            rolls(1)
+                            entry {
+                                type = "item"
+                                identifier = "bow"
+                                weight = 1
+                            }
                         }
                     }
                 }
                 loot {
-                    genTable("soldier", addon) {
+                    table("soldier_range_drops") {
                         pool {
-                            entry(type = "item", name = "arrow", weight = 10) {
-                                functionSetCount(4)
+                            entry {
+                                type = "item"
+                                identifier = "arrow"
+                                weight = 10
+                                functions {
+                                    functionSetCount(4)
+                                }
                             }
-                            entry(type = "item", name = "bone", weight = 10) {
-                                functionSetCount(2)
+                            entry {
+                                type = "item"
+                                identifier = "bone"
+                                weight = 8
+                                functions {
+                                    functionSetCount(2)
+                                }
                             }
                         }
                     }
                 }
             }
-            events { spawnEvent(this) }
         }
     }
 }
