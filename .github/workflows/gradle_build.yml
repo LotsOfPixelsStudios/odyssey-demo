@@ -24,6 +24,7 @@ jobs:
       - name: Credentials
         env:
           GRADLE_PROPERTIES: ${{ secrets.GRADLE_PROPERTIES }}
+          LOCALAPPDATA: ''
         shell: bash
         run: |
           mkdir -p ~/.gradle/
@@ -31,6 +32,8 @@ jobs:
       - name: Run project with Gradle
         run: |
           ./gradlew --warning-mode all run --no-daemon --args="zip-world package"
+        env:
+          LOCALAPPDATA: ''
       - name: release
         uses: softprops/action-gh-release@v1
         id: create_release
