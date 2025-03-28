@@ -9,6 +9,7 @@ fun Entity.soldierSpawnRule() {
             populationControl(PopulationControl.MONSTER)
             condition {
                 spawnsOnSurface()
+                spawnsOnBlockFilter = mutableListOf("sandstone")
                 herd {
                     maxSize = 5
                     minSize = 2
