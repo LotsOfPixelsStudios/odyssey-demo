@@ -54,7 +54,7 @@ fun Addon.soldierMelee() {
                             rolls(1)
                             entry {
                                 type = "item"
-                                identifier = "minecraft:golden_sword"
+                                identifier = "minecraft:golden_axe"
                                 weight = 1
                             }
                         }

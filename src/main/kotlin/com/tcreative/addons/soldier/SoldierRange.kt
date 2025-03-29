@@ -51,6 +51,7 @@ fun Addon.soldierRange() {
                 loot {
                     table("soldier_range_drops") {
                         pool {
+                            rolls(2)
                             entry {
                                 type = "item"
                                 identifier = "arrow"

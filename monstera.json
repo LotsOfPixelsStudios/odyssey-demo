@@ -19,7 +19,7 @@
   "targetMcVersion": [
     1,
     21,
-    61
+    70
   ],
   "scriptingVersion": "1.17.0",
   "scriptingVanillaDataVersion": "1.21.2",
@@ -56,10 +56,11 @@
     "resTexts": "texts"
   },
   "minecraftFormatVersions": {
-    "behEntity": "1.21.61",
+    "behEntity": "1.21.70",
     "behItem": "1.10.0",
     "behAnim": "1.8.0",
-    "behBlock": "1.21.61",
+    "behBlock": "1.21.70",
+    "resBlock": "1.21.40",
     "behRecipe": "1.17.41",
     "behSpawnRule": "1.8.0",
     "behAnimController": "1.10.0",

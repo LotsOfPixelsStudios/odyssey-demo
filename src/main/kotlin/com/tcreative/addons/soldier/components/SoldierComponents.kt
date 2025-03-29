@@ -40,9 +40,6 @@ fun Entity.soldierComponents() {
                 avoidWater = true
                 canPathOverWater = false
             }
-            behEquipItem {
-                priority = 2
-            }
             movement {
                 value = 0.2
             }
